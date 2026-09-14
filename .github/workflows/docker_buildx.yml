@@ -1,0 +1,67 @@
+name: Docker Buildx
+
+# Controls when the workflow will run
+on:
+  release:
+  # push:
+    # branches: 
+    #   - main
+    # tags:
+    #  - 'v*'
+  pull_request:
+    branches: 
+      - main
+
+  workflow_dispatch:
+
+permissions: 
+  packages: write
+  
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      # https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      # https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v4
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          # Shouldn't this be github.GITHUB_TOKEN?
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker meta
+        id: image_builder # you'll use this in the next step
+        uses: docker/metadata-action@v6
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ghcr.io/${{ github.repository }}
+          # Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name == 'release' }}
+          tags: ${{ steps.image_builder.outputs.tags }}
+          labels: ${{ steps.image_builder.outputs.labels }}
+          build-args: VERSION_TAG=${{ github.event.release.tag_name }}
