@@ -9,7 +9,7 @@ Place the following json into the `.devcontainer/devcontainer.json` file within 
 
 ```json
 {
-  "image":"ghcr.io/dxiai/r-devcontainer:main",
+  "image":"ghcr.io/dxiai/r-devcontainer:latest",
 
   "customizations": {
         "vscode": {
