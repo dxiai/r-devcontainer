@@ -22,11 +22,11 @@ Place the following json into the `.devcontainer/devcontainer.json` file within 
             "redhat.vscode-yaml"
           ],
           "settings": {
-				    "r.rterm.linux": "/usr/local/bin/radian",
+            "r.rterm.linux": "/usr/local/bin/radian",
             "r.bracketedPaste": true,
             "workbench.editor.tabActionReserveSpace": true,
             "editor.tabSize": 4
-			    }
+          }
         }
   }
 }
