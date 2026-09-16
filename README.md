@@ -7,9 +7,11 @@ This gives you a unique working environment on your Laptop and in GitHub Code Sp
 ### Preparations
 
 1. Install [Docker](https://www.docker.com/products/docker-desktop/)
+ 
    a. on Windows only: Install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
-2. Install [VSCode](https://code.visualstudio.com)
-3. Install the VSCode extension `Remote Development`
+   
+3. Install [VSCode](https://code.visualstudio.com)
+4. Install the VSCode extension `Remote Development`
 
 ### Using the Dev-Container 
 
