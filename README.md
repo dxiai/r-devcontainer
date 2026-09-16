@@ -1,6 +1,6 @@
 # r-devcontainer - A working R-Devcontainer for the Data Sciences
 
-This gives you a unique working environment on your Laptop and in GitHub Code Spaces (and similar environments and editors)
+This gives you a unique working environment on your Laptop and in GitHub Code Spaces (and similar environments and editors).
 
 ## Getting started 
 
