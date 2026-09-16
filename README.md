@@ -53,3 +53,19 @@ This gives you a unique working environment on your Laptop and in GitHub Code Sp
 7. Be patient, this takes up to five minutes on *first* startup.
 8. Check that there is a green label stating `Dev Container @ desktop-linux` in the bottom left corner of VSCode.
 9. **DO NOT** add the `.devcontainer` folder to your `.gitignore` list and track it with your project.
+
+## What is in the box?
+
+This container comes with `languageserver`, `httpgd`, and `radian` preinstalled for a modern deep VSCode integration. 
+
+[`pak`](https://pak.r-lib.org) is preinstalled and replaces the old `install_packages()` function. 
+
+### R-packages
+
+Directly installed:
+- tidyverse
+- rstatix
+
+All packages:
+(follows)
+
